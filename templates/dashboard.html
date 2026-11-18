@@ -1,0 +1,14 @@
+{% extends "base.html" %}{% block title %}Dashboard{% endblock %}
+{% block content %}
+<div class="page-heading"><div><span class="eyebrow">YOUR SAFE SPACE</span><h1>Hello, {{ logged_user.name }} 👋</h1><p class="muted">Your safety tools, all in one place.</p></div><a class="btn secondary" href="{{ url_for('report') }}">＋ Report incident</a></div>
+<div class="dashboard-grid">
+ <section class="panel sos-panel"><span class="eyebrow">QUICK ACTION</span><h2>Need help?</h2><p>Record an SOS alert with your current location, if you allow access.</p><button class="sos-button" id="sosButton">SOS</button><p class="tiny">Demo only: this records an alert in SafeHer; it does not call or notify emergency services.</p><div id="sosMessage" class="inline-message" aria-live="polite"></div></section>
+ <section class="panel"><div class="panel-title"><h2>My location</h2><button class="text-button" id="locateButton">Find me</button></div><div id="map" class="map"></div><p class="tiny">Location is requested only after you press Find me or SOS.</p></section>
+ <section class="panel"><div class="panel-title"><h2>Emergency contacts</h2><a href="{{ url_for('contacts') }}">Manage</a></div>
+ {% if contacts %}{% for c in contacts %}<div class="list-row"><div><strong>{{ c.name }}</strong><span>{{ c.relationship or 'Contact' }}</span></div><a href="tel:{{ c.phone }}">{{ c.phone }}</a></div>{% endfor %}{% else %}<p class="muted">No contacts added yet.</p><a href="{{ url_for('contacts') }}" class="btn secondary">Add a contact</a>{% endif %}
+ </section>
+ <section class="panel"><h2>Recent SOS alerts</h2>{% if alerts %}{% for a in alerts %}<div class="list-row"><div><strong>{{ a.status }}</strong><span>{{ a.created_at }}</span></div><span>{% if a.latitude is not none %}GPS saved{% else %}No GPS{% endif %}</span></div>{% endfor %}{% else %}<p class="muted">No alerts recorded.</p>{% endif %}</section>
+ <section class="panel wide"><h2>My recent reports</h2>{% if reports %}{% for r in reports %}<div class="list-row"><div><strong>{{ r.category }}</strong><span>{{ r.created_at }}</span></div><span class="status">{{ r.status }}</span></div>{% endfor %}{% else %}<p class="muted">No reports submitted yet.</p>{% endif %}</section>
+</div>
+{% endblock %}
+{% block scripts %}<script>window.SAFEHER_SOS_URL={{ url_for('sos')|tojson }};</script>{% endblock %}

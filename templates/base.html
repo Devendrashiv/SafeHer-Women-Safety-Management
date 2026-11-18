@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}SafeHer{% endblock %} | SafeHer</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="{{ url_for('index') }}"><span class="brand-mark">S</span> SafeHer</a>
+  <nav>
+    <a href="{{ url_for('index') }}">Home</a>
+    {% if logged_user %}
+      <a href="{{ url_for('dashboard') }}">Dashboard</a>
+      <a href="{{ url_for('contacts') }}">Contacts</a>
+      {% if logged_user.role == 'admin' %}<a href="{{ url_for('admin_dashboard') }}">Admin</a>{% endif %}
+      <a class="nav-cta" href="{{ url_for('logout') }}">Logout</a>
+    {% else %}
+      <a href="{{ url_for('login') }}">Login</a><a class="nav-cta" href="{{ url_for('register') }}">Get Started</a>
+    {% endif %}
+  </nav>
+</header>
+<main class="container">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}{% for category, message in messages %}
+      <div class="flash {{ category }}">{{ message }}</div>
+    {% endfor %}{% endif %}
+  {% endwith %}
+  {% block content %}{% endblock %}
+</main>
+<footer><p>SafeHer · Academic demonstration project · In an emergency in India, call <strong>112</strong>.</p></footer>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% block scripts %}{% endblock %}
+</body></html>

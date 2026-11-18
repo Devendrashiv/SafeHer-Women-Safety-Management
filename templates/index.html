@@ -1,0 +1,18 @@
+{% extends "base.html" %}{% block title %}Home{% endblock %}
+{% block content %}
+<section class="hero">
+ <div class="hero-copy">
+  <span class="eyebrow">SAFETY • SUPPORT • EMPOWERMENT</span>
+  <h1>Your safety.<br><span>Your power.</span></h1>
+  <p>One place to manage trusted contacts, record safety alerts and report incidents. Designed to put useful safety tools within reach.</p>
+  <div class="actions"><a class="btn primary" href="{{ url_for('register') }}">Create an account</a><a class="btn ghost" href="{{ url_for('login') }}">Sign in</a></div>
+  <p class="small-note">For immediate danger in India, call 112. SafeHer is not an emergency dispatch service.</p>
+ </div>
+ <div class="hero-art"><div class="orb"></div><div class="shield">♡</div><div class="floating-card"><span class="dot"></span> Your safety space</div></div>
+</section>
+<section class="feature-grid">
+ <article class="feature"><div class="feature-icon">⌖</div><h3>Location-aware SOS</h3><p>Record an SOS alert with browser location permission when available.</p></article>
+ <article class="feature"><div class="feature-icon">♡</div><h3>Trusted contacts</h3><p>Keep important emergency contact details together.</p></article>
+ <article class="feature"><div class="feature-icon">✦</div><h3>Incident reports</h3><p>Submit a report and review its status from your dashboard.</p></article>
+</section>
+{% endblock %}

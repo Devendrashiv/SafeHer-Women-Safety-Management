@@ -1,0 +1,2 @@
+{% extends "base.html" %}{% block title %}Error {{ code }}{% endblock %}
+{% block content %}<section class="form-wrap"><div class="form-card"><span class="eyebrow">SAFEHER</span><h1>{{ code }}</h1><p>{{ message }}</p><a class="btn primary" href="{{ url_for('index') }}">Back home</a></div></section>{% endblock %}

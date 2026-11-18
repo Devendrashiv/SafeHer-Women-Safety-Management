@@ -1,0 +1,4 @@
+{% extends "base.html" %}{% block title %}Register{% endblock %}
+{% block content %}<section class="form-wrap"><div class="form-card"><span class="eyebrow">JOIN SAFEHER</span><h1>Create account</h1><p class="muted">Set up your personal safety space.</p>
+<form method="post"><label>Full name</label><input name="name" required maxlength="100" autocomplete="name"><label>Email address</label><input type="email" name="email" required autocomplete="email"><label>Password</label><input type="password" name="password" minlength="8" required autocomplete="new-password"><button class="btn primary full">Create account</button></form>
+<p class="form-bottom">Already registered? <a href="{{ url_for('login') }}">Sign in</a></p></div></section>{% endblock %}

@@ -1,0 +1,4 @@
+{% extends "base.html" %}{% block title %}Login{% endblock %}
+{% block content %}<section class="form-wrap"><div class="form-card"><span class="eyebrow">WELCOME BACK</span><h1>Sign in</h1><p class="muted">Access your SafeHer dashboard.</p>
+<form method="post"><label>Email address</label><input type="email" name="email" required autocomplete="email"><label>Password</label><input type="password" name="password" required autocomplete="current-password"><button class="btn primary full">Login</button></form>
+<p class="form-bottom">New to SafeHer? <a href="{{ url_for('register') }}">Create an account</a></p></div></section>{% endblock %}
